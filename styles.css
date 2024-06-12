@@ -48,6 +48,7 @@ h1 {
     align-items: center;
     font-size: 1.2em;
     font-weight: bold;
+    flex-direction: column;
 }
 
 .table.active {
@@ -56,4 +57,26 @@ h1 {
 
 .seats {
     position: absolute;
+    top: 10px;
+}
+
+.controls {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #666;
 }

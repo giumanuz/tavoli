@@ -1,18 +1,45 @@
-function occupySeats(element) {
-    const currentSeats = parseInt(element.getAttribute('data-seats'));
+let incrementInterval;
+let decrementInterval;
+
+function startIncrement(button) {
+    incrementSeats(button);
+    incrementInterval = setInterval(() => incrementSeats(button), 200);
+}
+
+function stopIncrement() {
+    clearInterval(incrementInterval);
+}
+
+function startDecrement(button) {
+    decrementSeats(button);
+    decrementInterval = setInterval(() => decrementSeats(button), 200);
+}
+
+function stopDecrement() {
+    clearInterval(decrementInterval);
+}
+
+function incrementSeats(button) {
+    const table = button.closest('.table');
+    const currentSeats = parseInt(table.getAttribute('data-seats'));
+    table.setAttribute('data-seats', currentSeats + 1);
+    table.querySelector('.seats').textContent = currentSeats + 1;
+    if (table.classList.contains('active')) {
+        table.classList.remove('active');
+    }
+    updateCounter();
+}
+
+function decrementSeats(button) {
+    const table = button.closest('.table');
+    const currentSeats = parseInt(table.getAttribute('data-seats'));
     if (currentSeats > 0) {
-        const seatsToOccupy = parseInt(prompt("Inserisci il numero di posti da occupare:", "1"));
-        if (seatsToOccupy && seatsToOccupy > 0 && seatsToOccupy <= currentSeats) {
-            const newSeats = currentSeats - seatsToOccupy;
-            element.setAttribute('data-seats', newSeats);
-            element.querySelector('.seats').textContent = newSeats;
-            if (newSeats === 0) {
-                element.classList.add('active');
-            }
-            updateCounter();
-        } else {
-            alert("Numero non valido. Inserisci un numero tra 1 e " + currentSeats);
+        table.setAttribute('data-seats', currentSeats - 1);
+        table.querySelector('.seats').textContent = currentSeats - 1;
+        if (currentSeats - 1 === 0) {
+            table.classList.add('active');
         }
+        updateCounter();
     }
 }
 
