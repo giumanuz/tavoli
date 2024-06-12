@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden; /* Ensure no body overflow */
 }
 
 .container {
@@ -18,7 +19,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-height: 90vh;
     max-width: 90vw;
-    overflow: hidden; /* Prevent overflow from affecting layout */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -37,15 +38,15 @@ h1 {
     flex-grow: 1;
     overflow-y: auto;
     max-height: 70vh;
-    padding-right: 15px; /* Add padding to account for scrollbar */
-    margin-right: -15px; /* Counteract padding effect */
+    padding-right: 15px;
+    margin-right: -15px;
 }
 
 .tables {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    padding: 10px; /* Add padding for inner content */
+    padding: 10px;
 }
 
 .table {
@@ -99,4 +100,42 @@ button:active {
     font-weight: bold;
     margin-bottom: 5px;
     text-align: center;
+}
+
+.spacer {
+    width: 100%;
+    height: 50px; /* Adjust the height as needed */
+    background: transparent; /* Ensure it's invisible */
+    grid-column: span 3; /* Make sure it spans all columns */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .tables {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tables-container {
+        max-height: 80vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .tables {
+        grid-template-columns: 1fr;
+    }
+
+    .tables-container {
+        max-height: 80vh;
+    }
+
+    .table {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .counter {
+        margin-bottom: 10px;
+    }
 }
