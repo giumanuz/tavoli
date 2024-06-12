@@ -60,15 +60,20 @@ function updateCounter() {
 function saveTableState() {
     const tables = document.querySelectorAll('.table');
     const tableState = {};
-    
+    let totalAvailableSeats = 0;
+
     tables.forEach(table => {
         const tableName = table.querySelector('.table-name').textContent;
         const seats = parseInt(table.getAttribute('data-seats'));
         tableState[tableName] = seats;
+        totalAvailableSeats += seats;
     });
-    
+
+    tableState['totalAvailableSeats'] = totalAvailableSeats; // Aggiunge il conteggio totale dei posti disponibili
+
     localStorage.setItem('tableState', JSON.stringify(tableState)); // Salva lo stato dei tavoli nel localStorage
 }
+
 
 function loadTableState() {
     const tableState = JSON.parse(localStorage.getItem('tableState'));
