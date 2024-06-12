@@ -9,14 +9,26 @@
 <body>
     <div class="container">
         <h1>Tavoli Disponibili</h1>
-        <div class="counter">Tavoli Disponibili: <span id="counter">6</span></div>
+        <div class="counter">Posti Disponibili: <span id="counter">48</span></div>
         <div class="tables">
-            <div class="table" onclick="toggleTable(this)"></div>
-            <div class="table" onclick="toggleTable(this)"></div>
-            <div class="table" onclick="toggleTable(this)"></div>
-            <div class="table" onclick="toggleTable(this)"></div>
-            <div class="table" onclick="toggleTable(this)"></div>
-            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
+            <div class="table" data-seats="8" onclick="occupySeats(this)">
+                <span class="seats">8</span>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
