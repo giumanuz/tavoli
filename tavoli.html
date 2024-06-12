@@ -9,52 +9,57 @@
 <body>
     <div class="container">
         <h1>Sciarra Merda</h1>
-        <div class="counter">Posti Disponibili: <span id="counter">48</span></div>
-        <div class="tables">
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
-            <div class="table" data-seats="8">
-                <span class="seats">8</span>
-                <div class="controls">
-                    <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()">+</button>
-                    <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()">-</button>
-                </div>
-            </div>
+        <div class="counter">Posti Disponibili: <span id="counter">0</span></div>
+        <div class="tables-container">
+            <div class="tables" id="tables"></div>
         </div>
     </div>
+    <script>
+        function createTable(name, seats) {
+            return `
+                <div class="table" data-seats="${seats}">
+                    <div class="table-name">${name}</div>
+                    <span class="seats">${seats}</span>
+                    <div class="controls">
+                        <button class="increment" onmousedown="startIncrement(this)" onmouseup="stopIncrement()" onmouseleave="stopIncrement()">+</button>
+                        <button class="decrement" onmousedown="startDecrement(this)" onmouseup="stopDecrement()" onmouseleave="stopDecrement()">-</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateTables() {
+            const tablesContainer = document.getElementById('tables');
+            let tableHtml = '';
+
+            // 11 tables with 8 seats each (Tavolo 1E to Tavolo 11E)
+            for (let i = 1; i <= 11; i++) {
+                tableHtml += createTable(`Tavolo ${i}E`, 8);
+            }
+
+            // 89 tables with 16 seats each (Tavolo 12E to Tavolo 100E)
+            for (let i = 12; i <= 20; i++) {
+                tableHtml += createTable(`Tavolo ${i}E`, 16);
+            }
+
+            tableHtml += '<div class="spacer"></div>';
+
+            // 2 tables with 16 seats each (Tavolo 1I, Tavolo 2I)
+            for (let i = 1; i <= 2; i++) {
+                tableHtml += createTable(`Tavolo ${i}I`, 16);
+            }
+
+            // 3 tables with 8 seats each (Tavolo 3I to Tavolo 5I)
+            for (let i = 3; i <= 5; i++) {
+                tableHtml += createTable(`Tavolo ${i}I`, 8);
+            }
+
+            tablesContainer.innerHTML = tableHtml;
+            updateCounter();
+        }
+
+        document.addEventListener('DOMContentLoaded', generateTables);
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
