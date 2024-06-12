@@ -80,12 +80,18 @@ function loadTableState() {
                 const seats = tableState[tableName];
                 table.setAttribute('data-seats', seats);
                 table.querySelector('.seats').textContent = seats;
+                if (seats === 0) {
+                    table.classList.add('active'); // Aggiungi la classe 'active' se i posti sono 0
+                } else {
+                    table.classList.remove('active'); // Rimuovi la classe 'active' se i posti sono diversi da 0
+                }
             }
         });
 
         updateCounter(); // Aggiorna il counter dopo aver caricato lo stato dei tavoli
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     generateTables();
