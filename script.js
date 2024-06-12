@@ -28,6 +28,7 @@ function incrementSeats(button) {
         table.classList.remove('active');
     }
     updateCounter();
+    saveTableState(); // Salva lo stato dei tavoli dopo ogni incremento
 }
 
 function decrementSeats(button) {
@@ -40,6 +41,7 @@ function decrementSeats(button) {
             table.classList.add('active');
         }
         updateCounter();
+        saveTableState(); // Salva lo stato dei tavoli dopo ogni decremento
     }
 }
 
@@ -54,3 +56,36 @@ function updateCounter() {
 
     document.getElementById('counter').textContent = totalAvailableSeats;
 }
+
+function saveTableState() {
+    const tables = document.querySelectorAll('.table');
+    const tableState = {};
+    
+    tables.forEach(table => {
+        const tableName = table.querySelector('.table-name').textContent;
+        const seats = parseInt(table.getAttribute('data-seats'));
+        tableState[tableName] = seats;
+    });
+    
+    localStorage.setItem('tableState', JSON.stringify(tableState)); // Salva lo stato dei tavoli nel localStorage
+}
+
+function loadTableState() {
+    const tableState = JSON.parse(localStorage.getItem('tableState'));
+    if (tableState) {
+        const tables = document.querySelectorAll('.table');
+        tables.forEach(table => {
+            const tableName = table.querySelector('.table-name').textContent;
+            if (tableState.hasOwnProperty(tableName)) {
+                const seats = tableState[tableName];
+                table.setAttribute('data-seats', seats);
+                table.querySelector('.seats').textContent = seats;
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    generateTables();
+    loadTableState(); // Carica lo stato dei tavoli salvato
+});
