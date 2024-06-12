@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Titolo della pagina</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavoli Disponibili</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Benvenuto nella mia pagina HTML!</h1>
-    <p>Questo è un esempio di paragrafo.</p>
+    <div class="container">
+        <h1>Tavoli Disponibili</h1>
+        <div class="counter">Tavoli Disponibili: <span id="counter">6</span></div>
+        <div class="tables">
+            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" onclick="toggleTable(this)"></div>
+            <div class="table" onclick="toggleTable(this)"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
