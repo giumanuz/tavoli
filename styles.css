@@ -1,3 +1,4 @@
+/* Rimuoviamo l'overflow hidden dal body per consentire lo scrolling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -8,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; /* Ensure no body overflow */
+    overflow: auto; /* Consentiamo lo scrolling */
 }
 
 .container {
@@ -83,13 +84,14 @@ h1 {
 }
 
 button {
-    width: 25px;
-    height: 25px;
+    width: 20px; /* Riduciamo le dimensioni */
+    height: 20px; /* Riduciamo le dimensioni */
     border: none;
     border-radius: 50%;
     background-color: #444;
     color: white;
     cursor: pointer;
+    font-size: 0.8em; /* Riduciamo la dimensione del testo */
 }
 
 button:active {
@@ -98,15 +100,20 @@ button:active {
 
 .table-name {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 3px; /* Aggiungiamo spazio inferiore */
     text-align: center;
+    font-size: 0.8em; /* Riduciamo le dimensioni */
+}
+
+.seats {
+    font-size: 0.8em; /* Riduciamo le dimensioni */
 }
 
 .spacer {
     width: 100%;
-    height: 50px; /* Adjust the height as needed */
-    background: transparent; /* Ensure it's invisible */
-    grid-column: span 3; /* Make sure it spans all columns */
+    height: 50px; /* Regoliamo l'altezza come necessario */
+    background: transparent; /* Assicuriamo che sia invisibile */
+    grid-column: span 3; /* Assicuriamo che si estenda su tutte le colonne */
 }
 
 /* Responsive adjustments */
@@ -117,25 +124,5 @@ button:active {
 
     .tables-container {
         max-height: 80vh;
-    }
-}
-
-@media (max-width: 600px) {
-    .tables {
-        grid-template-columns: 1fr;
-    }
-
-    .tables-container {
-        max-height: 80vh;
-    }
-
-    .table {
-        width: 100%;
-        height: auto;
-        padding: 20px;
-    }
-
-    .counter {
-        margin-bottom: 10px;
     }
 }
