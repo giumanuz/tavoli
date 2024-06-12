@@ -32,15 +32,33 @@
             const tablesContainer = document.getElementById('tables');
             let tableHtml = '';
 
-            // 11 tables with 8 seats each (Tavolo 1E to Tavolo 11E)
-            for (let i = 1; i <= 11; i++) {
-                tableHtml += createTable(`Tavolo ${i}E`, 8);
-            }
+            // Definizione dei tavoli con posti e nomi specifici
+            const tables = [
+                { number: 1, seats: 8 },
+                { number: 2, seats: 8 },
+                { number: 3, seats: 16 },
+                { number: 4, seats: 8 },
+                { number: 5, seats: 8 },
+                { number: 6, seats: 8 },
+                { number: 7, seats: 8 },
+                { number: 8, seats: 8 },
+                { number: 9, seats: 8 },
+                { number: 10, seats: 16 },
+                { number: 11, seats: 16 },
+                { number: 12, seats: 8 },
+                { number: 13, seats: 8 },
+                { number: 14, seats: 8 },
+                { number: 15, seats: 16 },
+                { number: 16, seats: 16 },
+                { number: 17, seats: 16 },
+                { number: 18, seats: 16 },
+                { number: 19, seats: 16 }
+            ];
 
-            // 89 tables with 16 seats each (Tavolo 12E to Tavolo 100E)
-            for (let i = 12; i <= 20; i++) {
-                tableHtml += createTable(`Tavolo ${i}E`, 16);
-            }
+            // Generazione dei tavoli
+            tables.forEach(table => {
+                tableHtml += createTable(`Tavolo ${table.number}`, table.seats);
+            });
 
             tableHtml += '<div class="spacer"></div>';
 
@@ -57,6 +75,9 @@
             tablesContainer.innerHTML = tableHtml;
             updateCounter();
         }
+
+document.addEventListener('DOMContentLoaded', generateTables);
+
 
         document.addEventListener('DOMContentLoaded', generateTables);
     </script>
